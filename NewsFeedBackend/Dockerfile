@@ -3,6 +3,7 @@ WORKDIR /App
 
 COPY . ./
 RUN dotnet restore
+RUN dotnet tool install --global dotnet-ef
 RUN dotnet ef database update
 RUN dotnet publish -c Release -o out
 
