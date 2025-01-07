@@ -27,20 +27,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Applying migrations
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var dbContext = scope.ServiceProvider.GetRequiredService<NewsDbContext>();
-        dbContext.Database.Migrate();
-    }
-    catch
-    {
-        Console.WriteLine("Error during migrations apply");
-    }
-}
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
