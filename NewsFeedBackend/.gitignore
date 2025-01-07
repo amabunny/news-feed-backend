@@ -1,0 +1,78 @@
+# Системные файлы операционной системы
+.DS_Store
+Thumbs.db
+
+# Лог-файлы
+*.log
+
+# Папки сборки
+bin/
+obj/
+
+# Файлы публикации
+out/
+artifacts/
+
+# Конфигурационные файлы среды разработки
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Файлы кэша
+*.cache
+*.pdb
+*.ilk
+
+# Файлы NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# Файлы временного хранения
+*.tmp
+*.bak
+*.swp
+
+# Файлы для инструментов сборки
+*.vs/
+.vs/
+
+# Файлы для тестирования
+TestResults/
+*.coverage
+*.testlog
+
+# Локальные конфигурации и секреты
+secrets.json
+.env
+
+# Файлы, создаваемые инструментами
+_ReSharper*
+*_ReSharper.Caches
+*.idea/
+*.code-workspace
+
+# Конфигурационные файлы контейнеров
+docker-compose.override.yml
+.env.*
+
+# Локальные временные файлы
+*.rsuser
+*.resharper
+
+# Конфигурация пакетного менеджера
+node_modules/
+yarn.lock
+pnpm-lock.yaml
+
+# Миграции EF Core (если есть)
+Migrations/
+
+# Локальные файлы SQLite (если используете SQLite)
+*.db
+*.sqlite
+*.sqlite3
