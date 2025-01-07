@@ -1,10 +1,11 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:35792ea4ad1db051981f62b313f1be3b46b1f45cadbaa3c288cd0d3056eefb83 AS build-env
+﻿ENV ASPNETCORE_ENVIRONMENT=Production
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:35792ea4ad1db051981f62b313f1be3b46b1f45cadbaa3c288cd0d3056eefb83 AS build-env
 WORKDIR /App
 
 COPY . ./
 RUN dotnet restore
 RUN dotnet tool install --global dotnet-ef
-RUN echo $ASPNETCORE_ENVIRONMENT
 RUN /root/.dotnet/tools/dotnet-ef database update
 RUN dotnet publish -c Release -o out
 
