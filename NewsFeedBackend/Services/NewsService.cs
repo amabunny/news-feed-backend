@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using NewsFeedBackend.Data;
 using NewsFeedBackend.Models;
 
@@ -5,9 +6,49 @@ namespace NewsFeedBackend.Services;
 
 public class NewsService(NewsDbContext context)
 {
-    public IEnumerable<NewsItem> GetAll()
+    public IEnumerable<NewsItem> GetAll(
+        bool? isHot,
+        string? title, 
+        string? author, 
+        string? createdStart, 
+        string? createdEnd,
+        string? content)
     {
-        return context.NewsItems.OrderByDescending(n => n.Id).ToList();
+        var query = context.NewsItems.AsQueryable();
+
+        if (isHot != null)
+        {
+            query = query.Where(newsItem => newsItem.IsHot == true);
+        }
+
+        if (title != null)
+        {
+            query = query.Where(newsItem => newsItem.Title.ToLower().Contains(title.ToLower()));
+        }
+        
+        if (author!= null)
+        {
+            query = query.Where(newsItem => newsItem.Author.ToLower().Contains(author.ToLower()));
+        }
+        
+        if (createdStart!= null)
+        {
+            query = query
+                .Where(newsItem => newsItem.CreatedTimestamp >= DateTime.Parse(createdStart).ToUniversalTime());
+        }
+        
+        if (createdEnd!= null)
+        {
+            query = query
+                .Where(newsItem => newsItem.CreatedTimestamp <= DateTime.Parse(createdEnd).ToUniversalTime());
+        }
+
+        if (content != null)
+        {
+            query = query.Where(newsItem => newsItem.Content.ToLower().Contains(content.ToLower()));
+        }
+
+        return query.AsEnumerable().OrderByDescending(n => n.Id).ToList();
     }
 
     public NewsItem? GetById(int id) {
@@ -29,6 +70,7 @@ public class NewsService(NewsDbContext context)
         item.Content = newsItem.Content;
         item.Title = newsItem.Title;
         item.Author = newsItem.Author;
+        item.IsHot = newsItem.IsHot;
         context.SaveChanges();
 
         return item;

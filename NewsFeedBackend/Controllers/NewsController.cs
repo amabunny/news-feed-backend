@@ -10,9 +10,22 @@ namespace NewsFeedBackend.Controllers
     public class NewsController(NewsService newsService) : ControllerBase
     {
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(
+            bool? isHot, 
+            string? title, 
+            string? author, 
+            string? createdStart, 
+            string? createdEnd,
+            string? content)
         {
-            return Ok(newsService.GetAll());
+            return Ok(newsService.GetAll(
+                isHot: isHot, 
+                title: title,
+                author: author, 
+                createdStart: createdStart, 
+                createdEnd: createdEnd,
+                content: content
+            ));
         }
         
         [HttpGet("{id:int}")]
@@ -39,7 +52,8 @@ namespace NewsFeedBackend.Controllers
                     Id = newsItemDto.Id ?? 0,
                     Title = newsItemDto.Title,
                     Content = newsItemDto.Content,
-                    Author = newsItemDto.Author
+                    Author = newsItemDto.Author,
+                    IsHot = newsItemDto.IsHot
                 });
 
                 return Ok(result);
@@ -49,7 +63,8 @@ namespace NewsFeedBackend.Controllers
             {
                 Title = newsItemDto.Title,
                 Content = newsItemDto.Content,
-                Author = newsItemDto.Author
+                Author = newsItemDto.Author,
+                IsHot = newsItemDto.IsHot
             });
 
             return Ok(newsItem);

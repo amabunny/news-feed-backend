@@ -8,4 +8,6 @@ public class NewsItem
     public required string Author { get; set; }
 
     public DateTime CreatedTimestamp { get; set; } = DateTime.UtcNow;
+    
+    public bool? IsHot { get; set; }
 }
