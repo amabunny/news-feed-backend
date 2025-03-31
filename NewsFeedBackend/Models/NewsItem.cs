@@ -10,4 +10,6 @@ public class NewsItem
     public DateTime CreatedTimestamp { get; set; } = DateTime.UtcNow;
     
     public bool? IsHot { get; set; }
+    
+    public bool? HasLargeContent { get; set; }
 }

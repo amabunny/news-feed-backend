@@ -7,4 +7,5 @@ public class NewsItemDto
     public required string Content { get; set; }
     public required string Author { get; set; }
     public bool IsHot { get; set; }
+    public bool HasLargeContent { get; set; }
 }

@@ -71,6 +71,7 @@ public class NewsService(NewsDbContext context)
         item.Title = newsItem.Title;
         item.Author = newsItem.Author;
         item.IsHot = newsItem.IsHot;
+        item.HasLargeContent = newsItem.HasLargeContent;
         context.SaveChanges();
 
         return item;

@@ -47,13 +47,14 @@ namespace NewsFeedBackend.Controllers
 
             if (newsItemDto.Id != null)
             {
-                var result = newsService.Update(new NewsItem()
+                var result = newsService.Update(new NewsItem
                 {
                     Id = newsItemDto.Id ?? 0,
                     Title = newsItemDto.Title,
                     Content = newsItemDto.Content,
                     Author = newsItemDto.Author,
-                    IsHot = newsItemDto.IsHot
+                    IsHot = newsItemDto.IsHot,
+                    HasLargeContent = newsItemDto.HasLargeContent
                 });
 
                 return Ok(result);
@@ -64,7 +65,8 @@ namespace NewsFeedBackend.Controllers
                 Title = newsItemDto.Title,
                 Content = newsItemDto.Content,
                 Author = newsItemDto.Author,
-                IsHot = newsItemDto.IsHot
+                IsHot = newsItemDto.IsHot,
+                HasLargeContent = newsItemDto.HasLargeContent
             });
 
             return Ok(newsItem);
